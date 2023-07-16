@@ -1,0 +1,84 @@
+.p-2 {
+    width: 100%;
+ }
+ 
+ .title-datatable{
+     display: flex;
+     justify-content: space-between;
+     padding: 2rem;
+ }
+ 
+ .rdt_TableCell {
+     font-size: 1rem;
+ }
+ 
+ .rdt_TableCol {
+     font-size: 1rem;
+ }
+ 
+ .title-datatable h2{
+     font-size: 3rem;
+ 
+ }
+ 
+ .title-datatable a{
+     font-size: 1.25rem;
+     text-decoration: none;
+     color:rgb(255, 255, 255);
+     padding: .5rem;
+ }
+ 
+ .title-datatable .a-container{
+     font-size: 1.25rem;
+     display: flex;
+     align-items: center;
+     color: white;
+ }
+ 
+ .btn {
+     padding: .5rem;
+     border-radius: .5rem;
+     background-color:rgb(13, 55, 95);
+     font-size: 1rem;
+ }
+ .UpdateBtn {
+     background-color:rgb(13, 55, 95); 
+     border: none;
+     color: white;
+     padding: 10px 20px;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     font-size: 16px;
+     margin: 4px 2px;
+     cursor: pointer;
+     border-radius: 6px;
+   }
+   .deleteBtn{
+     background-color:rgb(172, 134, 1)
+ ; 
+     border: none;
+     color: white;
+     padding: 10px 20px;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     font-size: 16px;
+     margin: 4px 2px;
+     cursor: pointer;
+     border-radius: 6px;
+   }
+   .addApp{
+     background-color: #fbfbfb; 
+     border: none;
+     color: white;
+     padding: 10px 20px;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     font-size: 16px;
+     margin: 4px 2px;
+     cursor:auto;
+     border-radius: 6px;
+   }
+ 

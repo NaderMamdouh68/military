@@ -1,0 +1,95 @@
+
+
+.regetrationContainer {
+    max-width: 600px;
+    width: 600px;
+    margin:  auto;
+    margin-top: 50px;
+    background-color:inherit;
+    padding: 20px;
+    border: 2px solid rgb(255, 255,255, 0.5);
+    border-radius: 20px;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+   box-shadow: 0 0 30px rgba(0,0,0,0.5);
+   position:relative;
+}
+
+form{
+   width: 100%;
+   padding: 40px; 
+}
+  
+  h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: rgb(0, 0, 0);
+  }
+  
+  form label {
+    margin-left: 380px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: rgb(0, 0, 0);
+  }
+  .input-box{
+   position: relative;
+   width: 100%;
+   height: 50px;
+    border-bottom: 3px solid #000000;
+    margin: 10px 0px;
+  }
+  form input {
+    
+    width: 100%;
+    padding: 10px 15px;
+    
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 -10px 15px rgba(255, 255, 255, 0.1),
+                inset 0 10px 10px rgba(0, 0, 0, 0.1);
+  }
+  form h3{
+    
+    margin-top: 00px;
+    font-size: 1em;
+    color: black;
+    display: flex;
+    justify-content: center;
+  }
+  form h3 a{
+    cursor: pointer;
+    text-decoration: none;
+    color:  rgb(13, 55, 95);
+     font-size: 17px;
+  }
+  button {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 0 auto;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(13, 55, 95);
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+  }
+  button:hover{
+    background-color: rgb(13, 55, 95);
+  }
+  .regetrationContainer form input[type="submit"]:active{
+    opacity: 0.8;
+  }
+  
+  @media screen and (max-width: 600px) {
+    form input {
+      width: calc(100% - 30px);
+    }
+  }

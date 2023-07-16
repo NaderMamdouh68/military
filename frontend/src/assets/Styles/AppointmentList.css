@@ -1,0 +1,67 @@
+.Appointment-List {
+  display: flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  justify-content:space-between ;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  margin: 20px;
+  background-color: rgba(254, 244, 244, 0.723);
+  border: 2px solid rgba(171, 163, 163, 0.723);
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+
+  }
+
+    .search, .filter{
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      
+    }
+    
+    .search:focus, .filter:focus{
+      outline: none;
+      border-color:  #22A39F;
+    }
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  width: 150px;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.search {
+  background-position: 10px 12px;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  border-radius: 5px;
+}
+
+.search:focus {
+  outline: none;
+  border-color: #22A39F;
+}
+.search-button{
+  cursor: pointer;
+  background-color: #22A39F;
+  width: 30%;
+  align-content: center;
+}
+.formSearch{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
