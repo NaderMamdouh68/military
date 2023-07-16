@@ -1,0 +1,66 @@
+.new {
+    width: 100%;
+    display: flex;
+}
+.new .newContainer {
+    flex: 6;
+}
+.new .newContainer .top {
+    background-color: rgb(13, 55, 95) ;
+
+}
+.new .newContainer .top h1{
+    margin-left: 1000px;
+    color: white;
+}
+.new .newContainer .top, .new .newContainer .bottom {
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+    padding: 10px;
+    margin: 20px;
+    display: flex;
+}
+.new .newContainer .top h1, .new .newContainer .bottom h1 {
+    font-size: 30px;
+}
+
+.new .newContainer .top .right, .new .newContainer .bottom .right {
+    flex: 2;
+}
+.new .newContainer .top .right form, .new .newContainer .bottom .right form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-around;
+}
+.new .newContainer .top .right form .formInput, .new .newContainer .bottom .right form .formInput {
+    width: 40%;
+}
+.new .newContainer .top .right form .formInput label, .new .newContainer .bottom .right form .formInput label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 340px;
+}
+.new .newContainer .top .right form .formInput label .icon, .new .newContainer .bottom .right form .formInput label .icon {
+    cursor: pointer;
+}
+.new .newContainer .top .right form .formInput input, .new .newContainer .bottom .right form .formInput input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+.new .newContainer .top .right form button, .new .newContainer .bottom .right form button {
+    background-color: rgb(13, 55, 95); 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 6px;
+}

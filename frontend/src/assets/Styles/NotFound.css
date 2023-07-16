@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    text-decoration:underline;
+    background-color: #f2f2f249;
+  }
+    
+  .text {
+    color: #231a1a;
+    font-size: 80px;
+  }

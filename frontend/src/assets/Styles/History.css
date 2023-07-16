@@ -1,0 +1,22 @@
+
+.custom_table {
+    font-size: 14px;
+    color: #000000;
+    border: 1px solid #000000;
+    justify-content: space-between;
+
+  }
+  
+  .custom_table thead th {
+    font-weight: bold;
+    background-color: #f5f5f5;
+  }
+  
+  .custom_tabletbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .custom_table tbody td {
+  
+    padding: 8px;
+  }
