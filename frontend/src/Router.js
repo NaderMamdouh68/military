@@ -18,6 +18,7 @@ import UpdateTraveler from "./dashboard/views/Users/UpdateTraveler";
 import AllGrades from "./dashboard/views/Courses/AllGrades";
 import AddCoursesGrades from "./dashboard/views/Courses/AddCoursesGrades";
 import A3Table from "./dashboard/views/Courses/A3Table";
+import Stuaddgrade from "./dashboard/views/Courses/Stuaddgrade";
 
   export const router = createBrowserRouter([
     {
@@ -66,6 +67,10 @@ import A3Table from "./dashboard/views/Courses/A3Table";
               ,{
                 path:"table",
                 element:<A3Table />
+              }
+              ,{
+                path:"addallgrades",
+                element:<Stuaddgrade />
               }
             ],
           },
