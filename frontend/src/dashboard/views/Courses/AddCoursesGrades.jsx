@@ -70,6 +70,8 @@ const AddCoursesGrades = () => {
             <th dir="rtl">اعمال السنه</th>
             <th dir="rtl"> الاختبار العملي</th>
             <th dir="rtl">الدرجة الكاملة</th>
+            <th>الحالة</th>
+
           </tr>
         </thead>
         <tbody>
@@ -130,6 +132,18 @@ const AddCoursesGrades = () => {
                 />
               </td>
               <td>
+                <input type="text" 
+                value={item.status}
+                onChange={(event) => {
+                  const updatedCourse = [...course];
+                  updatedCourse[i].status = event.target.value;
+                  setCourse(updatedCourse);
+                }}
+                />
+                  
+                </td>
+
+              <td>
                 <button style={{
     backgroundColor: 'rgb(172, 134, 1)',
     color: 'white',
@@ -140,6 +154,7 @@ const AddCoursesGrades = () => {
     fontSize: '16px',
   }} onClick={() => { handleUpdate(i) }}>تعديل</button>
               </td>
+              
             </tr>
           ))}
         </tbody>
@@ -191,7 +206,6 @@ const AddCoursesGrades = () => {
           </li>
         </ul>
       </nav>
-      <button type="submit"  onClick={handleUpdate}>تأكيد</button>
     </>
   );
 

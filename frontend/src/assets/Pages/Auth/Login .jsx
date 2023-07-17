@@ -32,7 +32,7 @@ const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault()
         try {
-            axios.post('http://localhost:5000/login', loginData, { withCredentials: true })
+            axios.post('http://localhost:5000/admin/login', loginData, { withCredentials: true })
                 .then((res) => {
                     navigate('/profile')
                 }).catch((error) => {

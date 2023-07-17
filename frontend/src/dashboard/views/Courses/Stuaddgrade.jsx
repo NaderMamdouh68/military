@@ -13,8 +13,9 @@ const Stuaddgrade = () => {
  const[csvData,setCsvData] = useState([]);
  const [course,setCourse] = useState([]);
   const [grade,setGrade] = useState([]);
-  const [material,setMaterial] = useState('');
+  const [material,setMaterial] = useState([]);
   const [allCourse,setAllCourse] = useState([]);
+  const [error,setError] = useState('');
 useEffect(()=>{
   axios.get(`http://localhost:5000/admin/getallgrade`).then((resp)=>{
     console.log(resp);
@@ -24,6 +25,15 @@ useEffect(()=>{
   axios.get(`http://localhost:5000/admin/allstudentmaterial`).then((resp)=>{
     console.log(resp);
     setAllCourse(resp.data);
+    setCourse(resp.data);
+  }
+  ).catch((err)=>{
+    console.log(err);
+  }
+  )
+  axios.get(`http://localhost:5000/admin/allmaterial`).then((resp)=>{
+    console.log(resp);
+    setMaterial(resp.data);
   }
   ).catch((err)=>{
     console.log(err);
@@ -39,10 +49,12 @@ const data = course.map((item) => ({
   full_grade: 0,
   practical_exams_grade: 0,
   written_exams_grade: 0,
-  material_id: item.material_id,
-  student_id: item.student_id,
   student_name: item.student_name,
   material_name: item.material_name,
+  status: 0,
+  material_id: item.material_id,
+  student_id: item.student_id,
+  
 }));
 
 const header = [
@@ -63,6 +75,18 @@ const header = [
     key: "written_exams_grade"
   },
   {
+    label: "student_name",
+    key: "student_name"
+  },
+  {
+    label: "material_name",
+    key: "material_name"
+  },
+  {
+    label: "status",
+    key: "status"
+  },
+  {
     label: "material_id",
     key: "material_id"
   },
@@ -70,15 +94,8 @@ const header = [
     label: "student_id",
     key: "student_id"
   },
-  {
-    label: "student_name",
-    key: "student_name"
-  },
-  {
-    label: "material_name",
-    key: "material_name"
-  }
 ];
+  
 
 
 const csvReport = {
@@ -101,27 +118,29 @@ const csvReport = {
         )
         .catch((err)=>{
           console.log(err);
+          setError(err.data);
         }
         )
       }catch(err){
         console.log(err);
+        setError(err.data);
       }
     }
       
     
 
   // Pagination logic
-  const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 5;
-  const lastIndex = recordsPerPage * currentPage;
-  const firstIndex = lastIndex - recordsPerPage;
-  const records = course.slice(firstIndex, lastIndex);
-  const npage = Math.ceil(course.length / recordsPerPage);
-  const numbers = [...Array(npage + 1).keys()].slice(1);
+const [currentPage, setCurrentPage] = useState(1);
+const recordsPerPage = 5;
+const lastIndex = recordsPerPage * currentPage;
+const firstIndex = lastIndex - recordsPerPage;
+const records = course.slice(firstIndex, lastIndex);
+const npage = Math.ceil(course.length / recordsPerPage);
+const numbers = [...Array(npage).keys()].slice(1);
 
-  const changePage = (id) => {
-    setCurrentPage(id);
-  };
+const changePage = (id) => {
+  setCurrentPage(id);
+};
 
   const filter = (id) => {
     console.log(id);
@@ -141,7 +160,7 @@ const csvReport = {
     <>
     <select onChange={(e)=>{filter(e.target.value)}} className='selectMaterial' style={{ marginBottom: "1rem", backgroundColor: "#AD8700" , marginTop: "1rem" , marginLeft: "60rem" }}> 
     <option value="0" >تحديد المادة</option>
-    {allCourse.map((item, i) => (
+    {material.map((item, i) => (
       <option value={item.material_id}>{item.material_name}</option>
     ))}
     </select>
@@ -152,64 +171,18 @@ const csvReport = {
             <th>الرقم القومي</th>
             <th>اسم الماده</th>
             <th>الفصل الدراسي</th>
-            <th> درجة العملي</th>
-            <th>درجة التحريري</th>
-            <th>اعمال السنه</th>
-            <th>الدرجه النهائية</th>
-            <th>الحالة</th>
+            
           </tr>
         </thead>
         <tbody>
-        {course.map((item, i) => (
+        {records.map((item, i) => (
+          
   <tr key={i}>
     <td>{item.student_name}</td>
     <td>{item.student_national_id}</td>
     <td>{item.material_name}</td>
     <td>{item.material_sim}</td>
-    <td>
-      <input
-        type="text"
-        value={item.practical_exams_grade}
-        onChange={(e)=>{const updatedCourse = [...course] ;
-          updatedCourse[i].practical_exams_grade = e.target.value;
-          setCourse(updatedCourse);
-        }}
-      />
-    </td>
-    <td>
-      <input
-        type="text"
-        value={item.written_exams_grade}
-        onChange={(event) => { const updatedCourse = [...course] ;
-          updatedCourse[i].written_exams_grade = event.target.value;
-          setCourse(updatedCourse);
-        }}
-
-      />
-    </td>
-    <td>
-      <input
-        type="text"
-        value={item.year_work}
-        onChange={(event) => { const updatedCourse = [...course] ;
-          updatedCourse[i].year_work = event.target.value;
-          setCourse(updatedCourse);
-        }}
-
-      />
-    </td>
-    <td>
-      <input
-        type="text"
-        value={item.full_grade}
-        onChange={(event) => { const updatedCourse = [...course] ;
-          updatedCourse[i].full_grade = event.target.value;
-          setCourse(updatedCourse);
-        }}
-
-      />
-    </td>
-    <td><select><option>مكتمل</option><option>غير مكتمل</option><option>غياب</option></select></td>
+    
 
   </tr>
 ))}
@@ -237,9 +210,9 @@ const csvReport = {
           </li>
           {numbers.map((n, i) => (
             <li className={`page-item ${currentPage === n ? 'active' : ''}`} key={i}>
-              <a href="" className="page-link" onClick={() => changePage(n)}>
+              <button className="page-link" onClick={() => changePage(n)}>
                 {n}
-              </a>
+              </button>
             </li>
           ))}
           <li className="page-item">
@@ -261,15 +234,23 @@ const csvReport = {
           </li>
         </ul>
       </nav>
+      <div className='con_input' style={{display: "flex", justifyContent: "center", alignItems: "center", marginTop: "1rem" ,flexDirection:"column"}}>
+      <CSVLink {...csvReport} className="btn btn-primary" target="_blank"style={{backgroundColor: "#003c70", margin: "2rem auto", color: "#fff", padding: "0.5rem 1rem", borderRadius: "0.2rem", border: "none", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)" }} >
+        تحميل
+      </CSVLink>
+      
       <input 
         type="file"
         name="file"
         onChange={(e) => {setCsvData(e.target.files[0])}}
+        style={{backgroundColor: "#003c70", margin: "4rem auto 0 auto", color: "#fff", padding: "0.5rem 1rem", borderRadius: "0.2rem", border: "none", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)" , display: "table-column" }}
       />
-      <input type='submit' value='رفع الملف' onClick={handleUpdate} style={{backgroundColor: "#003c70", marginLeft: "1rem", color: "#fff", padding: "0.5rem 1rem", borderRadius: "0.2rem", border: "none", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)" , display: "table-column" }}  />
-      <CSVLink {...csvReport} className="btn btn-primary" target="_blank"style={{backgroundColor: "#003c70", marginLeft: "1rem", color: "#fff", padding: "0.5rem 1rem", borderRadius: "0.2rem", border: "none", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)" , marginLeft: "12.7rem"}} >
-        تحميل
-      </CSVLink>
+      <input type='submit' value='رفع الملف' onClick={handleUpdate} style={{backgroundColor: "#003c70", margin: "2rem", color: "#fff", padding: "0.5rem 1rem", borderRadius: "0.2rem", border: "none", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)" , display: "table-column" }}  />
+      
+      </div>
+
+      {error && <div className='error'>{error}</div>}
+      
     </>
   );
 

@@ -6,7 +6,8 @@ import path from "path";
 import fs from "fs";
 import csv from "fast-csv";
 import mysql from "mysql";
-
+import e from "express";
+import bcrypt from "bcrypt";
 
 
 const admin = express();
@@ -92,9 +93,9 @@ admin.put('/updategrade',
             const student_id = req.body.student_id;
             const material_id = req.body.material_id;
 
-            const sql = 'UPDATE grade SET year_work = ? , full_grade = ? , practical_exams_grade = ? , written_exams_grade = ? WHERE material_id = ? AND student_id = ?';
+            const sql = 'UPDATE grade SET year_work = ? , full_grade = ? , practical_exams_grade = ? , written_exams_grade = ? ,status = ? WHERE material_id = ? AND student_id = ?';
 
-            const result = await query(sql, [req.body.year_work, req.body.full_grade, req.body.practical_exams_grade, req.body.written_exams_grade, material_id, student_id]);
+            const result = await query(sql, [req.body.year_work, req.body.full_grade, req.body.practical_exams_grade, req.body.written_exams_grade, req.body.status, material_id, student_id]);
 
             if (result.affectedRows > 0) {
                 res.status(200).send("Updated");
@@ -146,14 +147,18 @@ function uploadCSV(path){
         .on("data", function (data) {
             csvData.push(data);
         })
-        .on("end", function () {
+        .on("end", async function () {
             csvData.shift();
             console.log(csvData);
             
-            const sql = 'INSERT INTO grade (year_work ,full_grade ,practical_exams_grade ,written_exams_grade ,material_id ,student_id , student_name ,material_name) VALUES ?';
-            query(sql, [csvData], (err, result) => {
-                if (err) throw err;
-                console.log(result);
+            const sql = 'INSERT INTO grade (year_work ,full_grade ,practical_exams_grade ,written_exams_grade, student_name ,material_name,status ,material_id ,student_id ) VALUES ?';
+            await query(sql, [csvData], (err, result) => {
+                if (err){
+                    return console.log(err);
+                     
+                }else{
+                    return console.log(result);
+                }
             }
             );
             
@@ -200,6 +205,41 @@ admin.get('/getallstudentmaterialgrade',
             console.log(error);
         }
     }
+);
+
+admin.post('/login',
+    body('email').notEmpty().withMessage('email is required').isEmail().withMessage("email must be a valid email").normalizeEmail(),
+    body("password").isLength({ min: 3 }).withMessage("password must be at least 3 chars long!"),
+    async (req, res) => {
+        try {
+            let error = [];
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                error = errors.array();
+                return res.status(400).json({ errors: error });
+            }
+
+            const user = await query("SELECT * FROM admin WHERE email = ?", [req.body.email]);
+            if (user.length === 0) {
+                error.push({ msg: "Admin Does Not Exist" });
+                return res.status(400).json({ login: false, errors: error });
+            }
+
+            const checkPassword = await  bcrypt.compare(req.body.password, user[0].password);
+            if (!checkPassword) {
+                error.push({ msg: "Password is incorrect" });
+                return res.status(400).json({ login: false, errors: error });
+            }
+
+            res.status(200).json({ login: true, user: user[0] });
+
+
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
 );
 
 
