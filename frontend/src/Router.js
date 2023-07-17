@@ -16,6 +16,8 @@
 import TravelerRequest from "./dashboard/views/Users/TravelerRequest";
 import UpdateTraveler from "./dashboard/views/Users/UpdateTraveler";
 import AllGrades from "./dashboard/views/Courses/AllGrades";
+import AddCoursesGrades from "./dashboard/views/Courses/AddCoursesGrades";
+import A3Table from "./dashboard/views/Courses/A3Table";
 
   export const router = createBrowserRouter([
     {
@@ -56,6 +58,14 @@ import AllGrades from "./dashboard/views/Courses/AllGrades";
               {
                 path:"AllGrades/:CourseName",
                 element: <AllGrades />
+              },
+              {
+                path:"allGrade/:id",
+                element:<AddCoursesGrades />
+              }
+              ,{
+                path:"table",
+                element:<A3Table />
               }
             ],
           },

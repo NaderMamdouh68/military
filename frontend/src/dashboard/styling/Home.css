@@ -1,0 +1,14 @@
+.home{
+    margin-left: 140px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.courses-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

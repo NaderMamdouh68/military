@@ -1,0 +1,35 @@
+/* Table container */
+.a3-table {
+    width: 11.7in;
+    height: 16.5in;
+    page-break-after: always;
+  
+  }
+  
+  /* Table header */
+  .a3-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  /* Table cells */
+  .a3-table td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #000000;
+  }
+  
+  /* Additional styles for specific elements */
+  .a3-table .child {
+    font-weight: normal;
+  }
+  
+  .a3-table .info {
+    width: 150%;
+   margin: 0 2000px;
+  }
+  th{
+    border: 2px solid black ;
+  }
