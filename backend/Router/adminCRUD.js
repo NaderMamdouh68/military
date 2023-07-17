@@ -49,17 +49,16 @@ admin.get('/getmaterial/:id',
 
 admin.put('/updategrades', (req, res) => {
     try {
-        const { material_id, student_id, year_work, full_grade, practical_exams_grade, written_exams_grade } = req.body;
-        
-        const sqlUpdate = "UPDATE grade SET year_work = ? , full_grade = ? , practical_exams_grade = ? , written_exams_grade = ? WHERE material_id = ? AND student_id = ?";
-        query(sqlUpdate, [year_work, full_grade, practical_exams_grade, written_exams_grade, material_id, student_id], (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.status(200).send("Updated");
-            }
-
+         
+        const corses = req.body;
+        corses.forEach(async (element) => {
+            await query('UPDATE grade SET year_work = ? , full_grade = ? , practical_exams_grade = ? , written_exams_grade = ? WHERE student_id = ? AND material_id = ?', [element.year_work, element.full_grade, element.practical_exams_grade, element.written_exams_grade, element.student_id, element.material_id]);
         });
+        res.status(200).send("Updated");
+
+        
+        
+        
     } catch (error) {
         console.log(error);
     }
