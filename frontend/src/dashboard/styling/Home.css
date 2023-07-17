@@ -1,14 +1,63 @@
-.home{
-    margin-left: 140px;
-    margin-bottom: 50px;
-    margin-top: 50px;
-}
-.container{
+
+.container {
+    width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.courses-grid{
+    justify-content: center;
+    background-color: #f1f1f1;
+    margin: 15px 15px 15px 15px;
+  }
+  
+  .title {
+    font-size: 3rem;
+    color: #003c70;
+    margin-bottom: 2rem;
+    margin-right: 30px;
+  }
+  
+  .courses-grid {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+  }
+  
+  .first,
+  .second {
+    flex: 1;
+  }
+  
+  .first h3,
+  .second h3 {
+    font-size: 2rem;
+    color: #003c70;
+    margin-bottom: 1rem;
+    margin-left: 100px;
+  }
+  
+  .courses {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-}
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 1rem;
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card a {
+    font-size: 1.5rem;
+    color: #003c70;
+    text-decoration: none;
+  }
+  
+  .card a:hover {
+    color: #ad8700;
+    text-decoration: none;
+  }
+  

@@ -9,7 +9,6 @@ return (
     
   <>
   <Outlet />
-  <Footer />
   </>
     
   );
