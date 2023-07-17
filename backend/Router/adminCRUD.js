@@ -52,11 +52,20 @@ admin.put('/updategrades', (req, res) => {
          
         const corses = req.body;
         corses.forEach(async (element) => {
-            await query('UPDATE grade SET year_work = ? , full_grade = ? , practical_exams_grade = ? , written_exams_grade = ? WHERE student_id = ? AND material_id = ?', [element.year_work, element.full_grade, element.practical_exams_grade, element.written_exams_grade, element.student_id, element.material_id]);
+            await query('UPDATE grade SET year_work = ? , full_grade = ? , practical_exams_grade = ? , written_exams_grade = ? WHERE student_id = ? AND material_id = ?', [element.year_work, element.full_grade, element.practical_exams_grade, element.written_exams_grade, element.student_id, element.material_id] , (err , result) => {
+                if(err){
+                    console.log(err);
+                }
+                if(result){
+                    console.log(result);
+                }
+            });
+
         });
         res.status(200).send("Updated");
-
         
+
+
         
         
     } catch (error) {
