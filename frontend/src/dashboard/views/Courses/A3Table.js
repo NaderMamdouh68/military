@@ -5,13 +5,26 @@ import axios from "axios";
 const A3Table = () => {
     const[grades,setGrades]=useState([]);
     const[course,setCourse]= useState([]);
+    
+
     useEffect(()=>{
-        axios.get("http://localhost:5000/admin/getallstudentmaterialgrade").then((resp)=>{
-            setCourse(resp.data);
-            console.log(resp.data);
-            console.log(course);
+        axios.get('http://localhost:5000/admin/allstudentmaterial').then((response)=>{
+            setCourse(response.data);
+            console.log(response.data);
         })
-    },[])
+    }
+    ,[]);
+    useEffect(()=>{
+        axios.get('http://localhost:5000/admin/allstudent').then((response)=>{
+            setGrades(response.data);
+            console.log(response.data);
+        })
+    }
+    ,[]);
+    console.log(course);
+    console.log(grades);
+
+    
   return (
     <div className="a3-table">
       <table>
@@ -113,7 +126,8 @@ const A3Table = () => {
           
         </thead>
         <tbody>
-           {course.map((info)=>{
+           {grades.map((info)=>(
+                 
 
             <tr>
             <th>
@@ -206,7 +220,8 @@ const A3Table = () => {
               </tr>
             </th>
           </tr>
-           })}
+            ))}
+          
         
         </tbody>
       </table>
