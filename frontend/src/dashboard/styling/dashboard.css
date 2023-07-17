@@ -1,10 +1,61 @@
-.table ul {
+/* dashboard.css */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+  }
+  
+  th,
+  td {
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+  
+  th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+  }
+  
+  td input {
+    width: 80px;
+  }
+  
+  .pagination {
     display: flex;
-    justify-content: space-evenly;
-    overflow-x: scroll;
+    justify-content: center;
     list-style: none;
-}
-.table ul li{
-    min-width: 80px;
-    
-}
+    margin: 0;
+    padding: 0;
+  }
+  
+  .page-item {
+    margin: 0 0.25rem;
+  }
+  
+  .page-item .page-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #003c70;
+    border: 1px solid #ccc;
+  }
+  
+  .page-item.active .page-link {
+    background-color: #003c70;
+    color: #fff;
+  }
+  
+  button[type='submit'] {
+    padding: 0.5rem 1rem;
+    background-color: #003c70;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button[type='submit']:hover {
+    background-color: #ad8700;
+  }
+  
