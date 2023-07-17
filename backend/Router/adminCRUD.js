@@ -47,31 +47,25 @@ admin.get('/getmaterial/:id',
     }
 );
 
-admin.put('/updategrades', (req, res) => {
+admin.put('/updategrades', async (req, res) => {
     try {
-         
-        const corses = req.body;
-        corses.forEach(async (element) => {
-            await query('UPDATE grade SET year_work = ? , full_grade = ? , practical_exams_grade = ? , written_exams_grade = ? WHERE student_id = ? AND material_id = ?', [element.year_work, element.full_grade, element.practical_exams_grade, element.written_exams_grade, element.student_id, element.material_id] , (err , result) => {
-                if(err){
-                    console.log(err);
-                }
-                if(result){
-                    console.log(result);
-                }
-            });
-
-        });
-        res.status(200).send("Updated");
-        
-
-
-        
-        
+      const grades = req.body;
+      console.log('Updating grades:', grades);
+  
+      for (const grade of grades) {
+        const result = await query(
+          'UPDATE grade SET year_work = ?, full_grade = ?, practical_exams_grade = ?, written_exams_grade = ? WHERE student_id = ? AND material_id = ?',
+          [grade.year_work, grade.full_grade, grade.practical_exams_grade, grade.written_exams_grade, grade.student_id, grade.material_id]
+        );
+        console.log('Result:', result);
+      }
+  
+      res.status(200).send('Grades updated successfully');
     } catch (error) {
-        console.log(error);
+      console.error('Error updating grades:', error);
+      res.status(500).send('An error occurred while updating grades');
     }
-});
+  });
 
 
 
