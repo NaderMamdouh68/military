@@ -28,7 +28,7 @@
   
   .a3-table .info {
     width: 150%;
-   margin: 0 2000px;
+    border-bottom: 2px solid black;
   }
   th{
     border: 2px solid black ;
