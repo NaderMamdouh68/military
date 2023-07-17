@@ -4,7 +4,6 @@
   import LoginPage from "./assets/Pages/Auth/Login ";
   import AllAppointments from "./dashboard/views/Courses/AllCourses";
   import AddAppointment from "./dashboard/views/Courses/AddCourses";
-  import UpdateAppointment, { UpdateAppointmenyLoader } from "./dashboard/views/Courses/UpdateCourses";
   import Dashboard from "./dashboard/Dashboard";
   import Appointments from "./dashboard/views/Courses/Courses";
   import AllTravelers from "./dashboard/views/Users/AllStudents";
@@ -51,11 +50,7 @@ import Stuaddgrade from "./dashboard/views/Courses/Stuaddgrade";
                 path: "add_appointment",
                 element: <AddAppointment />,
               },
-              {
-                path: "update_appointment/:id",
               
-                element: <UpdateAppointment />,
-              },
               {
                 path:"AllGrades/:CourseName",
                 element: <AllGrades />

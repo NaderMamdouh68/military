@@ -28,7 +28,7 @@ const A3Table = () => {
   return (
     <div className="a3-table">
       <table>
-        <thead>
+        <thead className="table-header">
             
           <tr>
             <th>
@@ -125,7 +125,7 @@ const A3Table = () => {
        
           
         </thead>
-        <tbody>
+        <tbody  className="table-body" >
            {grades.map((info)=>(
                  
 
@@ -136,26 +136,26 @@ const A3Table = () => {
                </th>
                <th>
                  
-                 <tr>{56}</tr>
+                 <tr>{info.student_name}</tr>
                  
                     </th>
             <th >
-             <tr style={ {display:"flex",justifyContent:"center"}}>coulmn 1</tr>
+             <tr style={ {display:"flex",justifyContent:"center"}}>{info.material_name}</tr>
               <tr>
-                <th className="child">Column 2</th>
-                <th  className="child">Column 3</th>
-                <th  className="child">Column 4</th>
-                <th  className="child">Column 5</th>
+                <th className="child">{info.year_work}</th>
+                <th  className="child">{info.practical_exams_grade}</th>
+                <th  className="child">{info.written_exams_grade}</th>
+                <th  className="child">{info.full_grade}</th>
                 <th  className="child">Column 5</th>
               </tr>
             </th>
             <th >
-              <tr style={ {display:"flex",justifyContent:"center"}}>coulmn 1</tr>
+            <tr style={ {display:"flex",justifyContent:"center"}}>{info.material_name}</tr>
               <tr>
-                <th className="child">Column 2</th>
-                <th  className="child">Column 3</th>
-                <th  className="child">Column 4</th>
-                <th  className="child">Column 5</th>
+                <th className="child">{info.year_work}</th>
+                <th  className="child">{info.practical_exams_grade}</th>
+                <th  className="child">{info.written_exams_grade}</th>
+                <th  className="child">{info.full_grade}</th>
                 <th  className="child">Column 5</th>
               </tr>
             </th>

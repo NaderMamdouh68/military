@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import '../../styling/ALLStud.css'
 import { getAuthUser } from '../../../assets/helper/Storage';
 import axios from 'axios';
-import UpdateAppointment from '../Courses/UpdateCourses';
 
 const AllTravelers =()=>{
     const [deleted, setDeleted] = useState({
@@ -19,9 +18,9 @@ const AllTravelers =()=>{
 
     useEffect(() => {
         setUsers({ ...currUsers, loading: true });
-        axios.get("http://localhost:5000/admin/students")
+        axios.get("http://localhost:5000/admin/allstudent")
         .then((resp) => {
-            setUsers({ ...currUsers, results: resp.data.students, loading: false, err: null });
+            setUsers({ ...currUsers, results: resp.data, loading: false, err: null });
             console.log(resp);
         })
         .catch((err) => {
@@ -37,19 +36,15 @@ const AllTravelers =()=>{
             name: "",
             cell: (param) => showRequest(param),
         },
-         {
-            name: "",
-            cell: (param) => AddStudent(param),
-        },
         {
             name: 'الرقم القومي',
-            selector: row => row.National_ID,
+            selector: row => row.student_national_id,
             sortable: true,
             center: true
         },
         {
             name: ' اسم الطالب',
-            selector: row => row.Student_Name,
+            selector: row => row.student_name,
             sortable: true,
             center: true
         }, 
@@ -100,9 +95,8 @@ const AllTravelers =()=>{
     return(
         <>
             <div className="title-datatable">
-            <Link to={"add_traveler"} className="addApp">
-            اضافة مسؤول 
-          </Link>
+                <div className="addApps"></div>
+            
          
                     <h2>جميع الطلاب</h2>    
             </div>

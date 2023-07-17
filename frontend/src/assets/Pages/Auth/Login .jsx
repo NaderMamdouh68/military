@@ -1,89 +1,101 @@
-import React from "react";
-import "../../Styles/Login.css";
-import { react, useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Alert from 'react-bootstrap/Alert';
+import React, { useEffect, useState } from 'react'
+import '../../Styles/Login.css'
+import { GrMail } from 'react-icons/gr'
+import { RiLockPasswordFill } from 'react-icons/ri'
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import mini from "../../../assets/mini-logo.jpeg";
+
+
+
 import axios from 'axios'
-import { getAuthUser, setAuthUser } from "../../helper/Storage";
-const LoginPage = () => {
-const  auth =getAuthUser();
-   const navigate = useNavigate();
-  const [userInfo, setUserInfo] = useState({
-    Email: "",
-    Password: "",
-    loading:false,
-    err:[],
-  })
 
-    //Login fun to make the page dousn't reload
-  const  Login =(event, userInfo)=> {
-   
-    event.preventDefault();
-    setUserInfo({...userInfo,loading:true});
-  
-    console.log(userInfo);
-    console.log(userInfo.err);
-  
-      };
-  
+const Login = () => {
+    const navigate = useNavigate()
+
+    const [error, setError] = useState([])
+
+    const [loginData, setLoginData] = useState({
+        password: '',
+        email: '',
+    })
+
+    const [t, i18n] = useTranslation();
+    const [toggle, setToggle] = React.useState(true);
+
+    const handleClick = () => {
+        i18n.changeLanguage(toggle ? 'ar' : 'en')
+        setToggle(!toggle);
+    };
+    axios.defaults.withCredentials = true
+
+    const handleLogin = (e) => {
+        e.preventDefault()
+        try {
+            axios.post('http://localhost:5000/login', loginData, { withCredentials: true })
+                .then((res) => {
+                    navigate('/profile')
+                }).catch((error) => {
+                    setError(error.response.data.errors[0].msg)
+                })
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 
+    return (
+        <>
+            <div className="home">
+                <div className="uni-logo">
+                </div>
 
-  return (<>
-{
-  userInfo.err.msg && 
-  <Alert variant="danger">{userInfo.err.msg} </Alert>}
 
-  
-    <div className="regetrationContainer">
-      <span className="border-line">
-        <h1>Login</h1>
-        <form 
-          className="FormLogin"
-          action="ProductList"
-          onSubmit={(e) => {
-            Login(e, userInfo);
-            
-          }}
-        >
-          <div>
-            <label htmlFor="email">Email</label>
-            <div className="input-box">
-              <input
-                id="email"
-                type={"email"}
-                value={userInfo.Email}
-                required
-                onChange={(event) => {
-                  setUserInfo({ ...userInfo, Email: event.target.value });
-                }}
-              />
+                <section className='subCon'>
+
+                    <img src={mini} alt="" className='mini-logo' />
+
+                    <div className="body">
+                        <div className="top">
+                            <h2>
+                                {t('تسجيل الدخول')}
+                            </h2>
+                        </div>
+                        <div className="content" style={{ marginTop: "6rem", gap: "3rem" }}>
+                            <div className="input-container" style={{ gap: "2rem", }}>
+                                
+                                <input
+                                    type="text"
+                                    placeholder={t('البريد الالكتروني')}
+                                    className='inputIN'
+                                    value={loginData.email} onChange={(e) => { setLoginData({ ...loginData, email: e.target.value }) }}
+                                />
+                                <GrMail className='Icon'/>
+                            </div>
+                            <div className="input-container" style={{ gap: "2rem", }}>
+                                <input
+                                    type="password"
+                                    placeholder={t('ادخل كلمة المرور')}
+                                    className='inputIN'
+                                    value={loginData.password} onChange={(e) => { setLoginData({ ...loginData, password: e.target.value }) }}
+                                />
+                                 <RiLockPasswordFill className='Icon'  />
+                            </div>
+                            <div className="actions">
+                                <button onClick={handleLogin}> {t('تسجيل الدخول')}</button>
+                              
+                            </div>
+                        </div>
+                        <div className='top' style={{ marginTop: "2rem", color: "red", fontWeight: "bolder" }}><h1>{error}</h1></div>
+
+                    </div>
+
+
+                </section>
             </div>
-          </div>
-          <div>
-            <label htmlFor="Password">Password</label>
-            <div className="input-box">
-              <input
-                id="Password"
-                type={"password"}
-                value={userInfo.Password}
-                required
-                onChange={(event) => {
-                  setUserInfo({ ...userInfo, Password: event.target.value });
-                }}
-              />
-            </div>
-          </div>
+        </>
+    )
+}
 
-          <button  type="submit" disabled={Login.loading==true}>Login</button>
-          <h3>
-            Don't have an account? <Link to={"/Register"}>Register </Link>
-          </h3>
-        </form>
-      </span>
-    </div>
-    </>
-  );
-};
-
-export default LoginPage;
+export default Login
