@@ -47,6 +47,24 @@ admin.get('/getmaterial/:id',
     }
 );
 
+admin.put('/updategrades', (req, res) => {
+    try {
+        const { material_id, student_id, year_work, full_grade, practical_exams_grade, written_exams_grade } = req.body;
+        
+        const sqlUpdate = "UPDATE grade SET year_work = ? , full_grade = ? , practical_exams_grade = ? , written_exams_grade = ? WHERE material_id = ? AND student_id = ?";
+        query(sqlUpdate, [year_work, full_grade, practical_exams_grade, written_exams_grade, material_id, student_id], (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.status(200).send("Updated");
+            }
+
+        });
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 
 
 
