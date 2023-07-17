@@ -38,7 +38,7 @@ const naviagte = useNavigate();
                                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.75 12.25H14.25" />
                                         </svg>
                                     </div>
-                                    <Link to={"appointments"} className="itemLink">المواد</Link>
+                                    <Link to={"appointments"} className="itemLink">اختر الدرجات</Link>
                                 </div>
                             </div>
                             <div className="dropdown-container">
