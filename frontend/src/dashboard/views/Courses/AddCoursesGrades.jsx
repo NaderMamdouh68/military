@@ -9,17 +9,17 @@ import { CSVLink } from 'react-csv';
 const AddCoursesGrades = () => {
   const { id } = useParams();
   const [course, setCourse] = useState([]);
-  const [grade, setGrade] = useState([]);
+ 
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/admin/getallgrade`)
+   /* axios.get(`http://localhost:5000/admin/getallgrade`)
       .then((resp) => {
         console.log(resp);
         setGrade(resp.data);
       })
       .catch((err) => {
         console.log(err);
-      });
+      });*/
 
     axios.get(`http://localhost:5000/admin/getmaterial/${id}`)
       .then((resp) => {
@@ -32,7 +32,7 @@ const AddCoursesGrades = () => {
   }, []);
 
   const handleUpdate = (i) => {
-    console.log(course[i]);
+    console.log(i);
     axios.put("http://localhost:5000/admin/updategrade", course[i])
       .then((resp) => {
         console.log(resp);
@@ -42,6 +42,7 @@ const AddCoursesGrades = () => {
         console.log(err);
       });
   };
+  
 
   // Pagination logic
   const [currentPage, setCurrentPage] = useState(1);
@@ -64,12 +65,11 @@ const AddCoursesGrades = () => {
             <th dir="rtl">اسم الطالب</th>
             <th dir="rtl">الرقم الوطني للطالب</th>
             <th dir="rtl">اسم المادة</th>
-            <th dir="rtl">رمز المادة</th>
-            <th dir="rtl">درجة الاختبار الكتابي</th>
-            <th dir="rtl">عمل العام</th>
+            <th dir="rtl">الفصل الدراسي</th>
+            <th dir="rtl"> الاختبار التحريري</th>
+            <th dir="rtl">اعمال السنه</th>
+            <th dir="rtl"> الاختبار العملي</th>
             <th dir="rtl">الدرجة الكاملة</th>
-            <th dir="rtl">درجة الاختبار العملي</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -78,21 +78,13 @@ const AddCoursesGrades = () => {
               <td>{item.student_name}</td>
               <td>{item.student_national_id}</td>
               <td>{item.material_name}</td>
-              <td>{item.material_sim}</td>
-              {grade.map((item2, j) => {
-                if (item2.student_id === item.student_id && item2.material_id === item.material_id) {
-                  return (
-                    <>
-                      <td>{item2.written_exams_grade}</td>
-                      <td>{item2.year_work}</td>
-                      <td>{item2.full_grade}</td>
-                      <td>{item2.practical_exams_grade}</td>
-                    </>
-                  );
-                } else {
-                  return null;
-                }
-              })}
+              
+              {item.material_sim === 1 ? (
+      <td>الاول</td>
+    ) : (
+      <td>الثاني</td>
+    )}
+          
               <td>
                 <input
                   type="text"
@@ -118,6 +110,17 @@ const AddCoursesGrades = () => {
               <td>
                 <input
                   type="text"
+                  value={item.practical_exams_grade}
+                  onChange={(event) => {
+                    const updatedCourse = [...course];
+                    updatedCourse[i].practical_exams_grade = event.target.value;
+                    setCourse(updatedCourse);
+                  }}
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
                   value={item.full_grade}
                   onChange={(event) => {
                     const updatedCourse = [...course];
@@ -127,7 +130,15 @@ const AddCoursesGrades = () => {
                 />
               </td>
               <td>
-                <button onClick={() => { handleUpdate(i) }}>تعديل</button>
+                <button style={{
+    backgroundColor: 'rgb(172, 134, 1)',
+    color: 'white',
+    padding: '10px 20px',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    fontSize: '16px',
+  }} onClick={() => { handleUpdate(i) }}>تعديل</button>
               </td>
             </tr>
           ))}
@@ -136,11 +147,24 @@ const AddCoursesGrades = () => {
 
       <nav>
         <ul className="pagination">
-          <li className="page-item">
-            <a href="" className="page-link" onClick={prePage}>
-              Prev
+        <li className="page-item">
+            <a href="" className="page-link" onClick={prePage} style={{
+    backgroundColor: "#003c70",
+    color: "#fff",
+    padding: "0.5rem 1rem",
+    borderRadius: "0.2rem",
+    textDecoration: "none",
+    display: "inline-block",
+    transition: "background-color 0.3s ease-in-out",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+    cursor: "pointer",
+    fontSize: "1rem",
+    fontWeight: "bold"
+  }}>
+              السابق
             </a>
           </li>
+
           {numbers.map((n, i) => (
             <li className={`page-item ${currentPage === n ? 'active' : ''}`} key={i}>
               <a href="" className="page-link" onClick={() => changePage(n)}>
@@ -148,14 +172,26 @@ const AddCoursesGrades = () => {
               </a>
             </li>
           ))}
-          <li className="page-item">
-            <a href="" className="page-link" onClick={nextPage}>
-              Next
+<li className="page-item">
+            <a href="" className="page-link" onClick={nextPage} style={{
+    backgroundColor: "#003c70",
+    color: "#fff",
+    padding: "0.5rem 1rem",
+    borderRadius: "0.2rem",
+    textDecoration: "none",
+    display: "inline-block",
+    transition: "background-color 0.3s ease-in-out",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+    cursor: "pointer",
+    fontSize: "1rem",
+    fontWeight: "bold"
+  }}>
+              التالي
             </a>
           </li>
         </ul>
       </nav>
-      <button type="submit" onClick={handleUpdate}>تأكيد</button>
+      <button type="submit"  onClick={handleUpdate}>تأكيد</button>
     </>
   );
 

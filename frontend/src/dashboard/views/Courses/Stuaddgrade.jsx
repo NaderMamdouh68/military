@@ -139,8 +139,8 @@ const csvReport = {
 
   return (
     <>
-    <select onChange={(e)=>{filter(e.target.value)}} >
-    <option value="0">Select Material</option>
+    <select onChange={(e)=>{filter(e.target.value)}} className='selectMaterial' style={{ marginBottom: "1rem", backgroundColor: "#AD8700" , marginTop: "1rem" , marginLeft: "60rem" }}> 
+    <option value="0" >تحديد المادة</option>
     {allCourse.map((item, i) => (
       <option value={item.material_id}>{item.material_name}</option>
     ))}
@@ -156,6 +156,7 @@ const csvReport = {
             <th>درجة التحريري</th>
             <th>اعمال السنه</th>
             <th>الدرجه النهائية</th>
+            <th>الحالة</th>
           </tr>
         </thead>
         <tbody>
@@ -208,6 +209,7 @@ const csvReport = {
 
       />
     </td>
+    <td><select><option>مكتمل</option><option>غير مكتمل</option><option>غياب</option></select></td>
 
   </tr>
 ))}
@@ -217,8 +219,20 @@ const csvReport = {
       <nav>
         <ul className="pagination">
           <li className="page-item">
-            <a href="" className="page-link" onClick={prePage}>
-              Prev
+            <a href="" className="page-link" onClick={prePage} style={{
+    backgroundColor: "#003c70",
+    color: "#fff",
+    padding: "0.5rem 1rem",
+    borderRadius: "0.2rem",
+    textDecoration: "none",
+    display: "inline-block",
+    transition: "background-color 0.3s ease-in-out",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+    cursor: "pointer",
+    fontSize: "1rem",
+    fontWeight: "bold"
+  }}>
+              السابق
             </a>
           </li>
           {numbers.map((n, i) => (
@@ -229,8 +243,20 @@ const csvReport = {
             </li>
           ))}
           <li className="page-item">
-            <a href="" className="page-link" onClick={nextPage}>
-              Next
+            <a href="" className="page-link" onClick={nextPage} style={{
+    backgroundColor: "#003c70",
+    color: "#fff",
+    padding: "0.5rem 1rem",
+    borderRadius: "0.2rem",
+    textDecoration: "none",
+    display: "inline-block",
+    transition: "background-color 0.3s ease-in-out",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+    cursor: "pointer",
+    fontSize: "1rem",
+    fontWeight: "bold"
+  }}>
+              التالي
             </a>
           </li>
         </ul>
@@ -240,9 +266,9 @@ const csvReport = {
         name="file"
         onChange={(e) => {setCsvData(e.target.files[0])}}
       />
-      <input type='submit' value='Upload Updated File CSV' onClick={handleUpdate} />
-      <CSVLink {...csvReport} className="btn btn-primary" target="_blank">
-        Download me
+      <input type='submit' value='رفع الملف' onClick={handleUpdate} style={{backgroundColor: "#003c70", marginLeft: "1rem", color: "#fff", padding: "0.5rem 1rem", borderRadius: "0.2rem", border: "none", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)" , display: "table-column" }}  />
+      <CSVLink {...csvReport} className="btn btn-primary" target="_blank"style={{backgroundColor: "#003c70", marginLeft: "1rem", color: "#fff", padding: "0.5rem 1rem", borderRadius: "0.2rem", border: "none", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)" , marginLeft: "12.7rem"}} >
+        تحميل
       </CSVLink>
     </>
   );

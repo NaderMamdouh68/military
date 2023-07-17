@@ -1,35 +1,44 @@
 /* Table container */
 .a3-table {
-    width: 11.7in;
-    height: 16.5in;
-    page-break-after: always;
-  
-  }
-  
-  /* Table header */
-  .a3-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-    text-align: center;
-    padding: 10px;
-  }
-  
-  /* Table cells */
-  .a3-table td {
-    text-align: center;
-    padding: 10px;
-    border: 1px solid #000000;
-  }
-  
-  /* Additional styles for specific elements */
-  .a3-table .child {
-    font-weight: normal;
-  }
-  
-  .a3-table .info {
-    width: 150%;
-    border-bottom: 2px solid black;
-  }
-  th{
-    border: 2px solid black ;
-  }
+  width: 11.7in;
+  height: 16.5in;
+  page-break-after: always;
+}
+.a3-table .table-header {
+  background-color: #564b4b5c;
+}
+.a3-table .table-body {
+  background-color: #ffffff;
+}
+.a3-table .table-body th {
+  background-color: #ffffff;
+}
+/* Table header */
+.a3-table .table-header th {
+  background-color: #f2f2f203;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Table body */
+.a3-table .table-body td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #000000;
+}
+
+/* Additional styles for specific elements */
+.a3-table .table-body tr tr .child {
+  font-weight: normal;
+  width: 30%;
+}
+
+.a3-table .table-header .info {
+  width: 150%;
+  border-bottom: 2px solid black;
+}
+
+.a3-table th {
+  border: 2px solid black;
+}
