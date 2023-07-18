@@ -9,9 +9,6 @@
   import AllTravelers from "./dashboard/views/Users/AllStudents";
   import Traveler from "./dashboard/views/Users/Students";
   import AddTraveler from "./dashboard/views/Users/AddAdmin";
-  import AppointmentRequests from "./dashboard/views/AllGrades/AllGrades";
-  import Requests from "./dashboard/views/AllGrades/Grades";
-  import UpdateRequests from "./dashboard/views/AllGrades/UpdateGrades";
 import TravelerRequest from "./dashboard/views/Users/TravelerRequest";
 import UpdateTraveler from "./dashboard/views/Users/UpdateTraveler";
 import AllGrades from "./dashboard/views/Courses/AllGrades";
@@ -91,21 +88,7 @@ import Stuaddgrade from "./dashboard/views/Courses/Stuaddgrade";
               }
             ],
           },
-          {
-            path: "requests",
-            element: <Requests />,
-            children: [
-              {
-                index: true,
-                element: <AppointmentRequests />,
-              },
-              {
-                path: "update_request/:id",
-             
-                element: <UpdateRequests />,
-              },
-            ],
-          },
+        
         ],
         },
       ],

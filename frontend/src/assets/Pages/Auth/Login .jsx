@@ -34,7 +34,7 @@ const Login = () => {
         try {
             axios.post('http://localhost:5000/admin/login', loginData, { withCredentials: true })
                 .then((res) => {
-                    navigate('/profile')
+                    navigate('/dashboard')
                 }).catch((error) => {
                     setError(error.response.data.errors[0].msg)
                 })
