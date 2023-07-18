@@ -10,7 +10,7 @@ const A3Table = () => {
   useEffect(() => {
     axios.get('http://localhost:5000/admin/allstudentmaterial').then((response) => {
       setCourse(response.data);
-      console.log(response.data);
+     
     })
   }
     , []);
@@ -18,13 +18,34 @@ const A3Table = () => {
     axios.get('http://localhost:5000/admin/allstudent').then((response) => {
       setGrades(response.data);
       console.log(response.data);
-     
+    
     })
   }
     , []);
-  console.log(course);
-  console.log(grades);
+    console.log(grades);
 
+  const calculateGrade =(grade)=>{
+    if(grade>=95)
+      return "A"
+    else if (grade>=90)
+      return "A-"
+    else if(grade>=85)
+      return "B+"
+    else if(grade>=80)
+      return "B"
+    else if(grade>=75)
+      return "B-"
+    else if(grade>=70)
+      return "C+"
+    else if(grade>=65)
+      return "C"
+    else if(grade>=60)
+      return "D+"
+    else
+      return "F"
+  
+    
+  } 
 
   return (
     <div className="a3-table">
@@ -141,7 +162,7 @@ const A3Table = () => {
                   <th className="child">{info2.practical_exams_grade}</th>
                   <th className="child">{info2.written_exams_grade}</th>
                   <th className="child">{info2.full_grade}</th>
-                  <th className="child">Grade</th>
+                  <th className="child">{calculateGrade(info2.full_grade)} </th>
                 </tr>
                 
               </th>
