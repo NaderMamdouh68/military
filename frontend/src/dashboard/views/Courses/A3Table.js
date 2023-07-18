@@ -5,7 +5,7 @@ import axios from "axios";
 const A3Table = () => {
   const [grades, setGrades] = useState([]);
   const [course, setCourse] = useState([]);
-
+  
 
   useEffect(() => {
     axios.get('http://localhost:5000/admin/allstudentmaterial').then((response) => {
@@ -18,6 +18,7 @@ const A3Table = () => {
     axios.get('http://localhost:5000/admin/allstudent').then((response) => {
       setGrades(response.data);
       console.log(response.data);
+     
     })
   }
     , []);
@@ -146,66 +147,9 @@ const A3Table = () => {
               </th>
                 )
               })}
-              <th >
-                <tr style={{ display: "flex", justifyContent: "center" }}>{info.material_name}</tr>
-                <tr>
-                  <th className="child">{info.year_work}</th>
-                  <th className="child">{info.practical_exams_grade}</th>
-                  <th className="child">{info.written_exams_grade}</th>
-                  <th className="child">{info.full_grade}</th>
-                  <th className="child">Column 5</th>
-                </tr>
-              </th>
-              <th >
-                <tr style={{ display: "flex", justifyContent: "center" }}>coulmn 1</tr>
-                <tr>
-                  <th className="child">Column 2</th>
-                  <th className="child">Column 3</th>
-                  <th className="child">Column 4</th>
-                  <th className="child">Column 5</th>
-                  <th className="child">Column 5</th>
-                </tr>
-              </th>
-              <th >
-                <tr style={{ display: "flex", justifyContent: "center" }}>coulmn 1</tr>
-                <tr>
-                  <th className="child">Column 2</th>
-                  <th className="child">Column 3</th>
-                  <th className="child">Column 4</th>
-                  <th className="child">Column 5</th>
-                  <th className="child">Column 5</th>
-                </tr>
-              </th>
-              <th >
-                <tr style={{ display: "flex", justifyContent: "center" }}>coulmn 1</tr>
-                <tr>
-                  <th className="child">Column 2</th>
-                  <th className="child">Column 3</th>
-                  <th className="child">Column 4</th>
-                  <th className="child">Column 5</th>
-                  <th className="child">Column 5</th>
-                </tr>
-              </th>
-              <th >
-                <tr style={{ display: "flex", justifyContent: "center" }}>coulmn 1</tr>
-                <tr>
-                  <th className="child">Column 2</th>
-                  <th className="child">Column 3</th>
-                  <th className="child">Column 4</th>
-                  <th className="child">Column 5</th>
-                  <th className="child">Column 5</th>
-                </tr>
-              </th>
-              <th >
-                <tr style={{ display: "flex", justifyContent: "center" }}>coulmn 1</tr>
-                <tr>
-                  <th className="child">Column 2</th>
-                  <th className="child">Column 3</th>
-                  <th className="child">Column 4</th>
-                  <th className="child">Column 5</th>
-                  <th className="child">Column 5</th>
-                </tr>
-              </th>
+          
+             
+           
               <th >
                 <tr style={{ display: "flex", justifyContent: "center" }}>GPA</tr>
 

@@ -18,7 +18,7 @@ admin.get('/allstudent',
         try {
             const result = await query('SELECT student.* , material.material_name , material.material_code , material.material_sim , material.material_status , grade.year_work , grade.full_grade , grade.practical_exams_grade	, grade.written_exams_grade FROM students AS student INNER JOIN grade ON student.student_id = grade.student_id INNER JOIN material ON grade.material_id = material.material_id');
             res.status(200).send(result);
-
+            console.log(result);
 
         } catch (error) {
             console.log(error);

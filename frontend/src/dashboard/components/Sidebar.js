@@ -38,7 +38,7 @@ const naviagte = useNavigate();
                                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.75 12.25H14.25" />
                                         </svg>
                                     </div>
-                                    <Link to={"appointments"} className="itemLink">اختر الدرجات</Link>
+                                    <Link to={"appointments"} className="itemLink">تعديل الدرجات</Link>
                                 </div>
                             </div>
                             <div className="dropdown-container">
@@ -56,7 +56,7 @@ const naviagte = useNavigate();
                                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.75 12.25H14.25" />
                                         </svg>
                                     </div>
-                                    <Link to={"appointments/addallgrades"} className="itemLink">جميع الدرجات </Link> 
+                                    <Link to={"appointments/addallgrades"} className="itemLink">اضافة الدرجات </Link> 
                                   
                                 </div>
                             </div>
@@ -64,26 +64,7 @@ const naviagte = useNavigate();
                                
                             </div>
                         </li>
-                        <li className>
-                            <div className="sidebar-menu-item">
-                                <div className="sidebar-menu-item-custom">
-                                    <div className="container-svg">
-                                        <svg className="svg-1 stroke-svg" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M7.75 19.25H16.25C17.3546 19.25 18.25 18.3546 18.25 17.25V9L14 4.75H7.75C6.64543 4.75 5.75 5.64543 5.75 6.75V17.25C5.75 18.3546 6.64543 19.25 7.75 19.25Z" />
-                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M18 9.25H13.75V5" />
-                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.75 15.25H14.25" />
-                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.75 12.25H14.25" />
-                                        </svg>
-                                    </div>
-                                    <div className="dropdown-container">
-                                    <ul className="sidebar-dropdown">
-                                    <Link to={"traveler"}  className="sidebar-dropdown-item">المستخدمين </Link>
-                                    </ul>
-                                    </div>
-                                </div>
-                            </div>
-                          
-                        </li>
+                   
                         <li className>
                             <div className="sidebar-menu-item">
                                 <div className="sidebar-menu-item-custom">
